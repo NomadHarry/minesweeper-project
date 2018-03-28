@@ -1,14 +1,14 @@
 // Minesweeper Project
 
 // Board Layout
-const board = [
+let board = [
 		[' ',' ',' '],
 		[' ',' ',' '],
 		[' ',' ',' '],
 		];
 
 // Generate Board
-let printBoard = board => {
+const printBoard = board => {
 	console.log('Current Board: ');
 	console.log(board[0].join(' | '));
 	console.log(board[1].join(' | '));
