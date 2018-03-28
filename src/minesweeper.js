@@ -2,13 +2,13 @@
 
 // Board Layout
 const board = [
-		[' ',' ',' '],
-		[' ',' ',' '],
-		[' ',' ',' '],
+		[[' '],[' '],[' ']],
+		[[' '],[' '],[' ']],
+		[[' '],[' '],[' ']],
 		];
 
 // Generate Board
-const printBoard = board => {
+let printBoard = board => {
 	console.log('Current Board: ');
 	console.log(board[0].join(' | '));
 	console.log(board[1].join(' | '));
@@ -16,4 +16,11 @@ const printBoard = board => {
 };
 
 // Print Board
+console.log(printBoard(board));
+
+// Player Choice and Bomb Loc
+board[0][1] = '1';
+board[2][2] = 'B';
+
+// In Play Board
 console.log(printBoard(board));
