@@ -39,5 +39,14 @@ const generateBombBoard = (numberOfRows, numberOfColumns, numberOfBombs) => {
 		return board;
 };
 
+
+// Print Game Board
+const printBoard = board.map(row => row.join(' | ')).join('\n'); => {
+	
+}
+
+
+
 // In Play Board
 console.log(generatePlayerBoard(2,2));
+console.log(printBoard);
