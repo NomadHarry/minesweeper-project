@@ -1,26 +1,21 @@
 // Minesweeper Project
 
-// Board Layout
-let board = [
-		[' ',' ',' '],
-		[' ',' ',' '],
-		[' ',' ',' '],
-		];
-
-// Generate Board
-const printBoard = board => {
-	console.log('Current Board: ');
-	console.log(board[0].join(' | '));
-	console.log(board[1].join(' | '));
-	console.log(board[2].join(' | '));
+// Player Board Generated
+const generatePlayerBoard = (numberOfRows, numberOfColumns) => {
+	let board = [];
+		
+		for (let rowNumber = 0; rowNumber < numberOfRows; rowNumber++) {
+			let row = [];
+			for (let columnNumber = 0; columnNumber < numberOfColumns; columnNumber++) {
+				row.push(' ');
+			};
+			board.push(row);
+		};
+		return board;
 };
 
-// Print Board
-console.log(printBoard(board));
 
-// Player Choice and Bomb Loc
-board[0][1] = '1';
-board[2][2] = 'B';
+
 
 // In Play Board
-console.log(printBoard(board));
+console.log(generatePlayerBoard(2,2));
