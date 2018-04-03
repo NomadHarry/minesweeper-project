@@ -2,7 +2,7 @@
 
 // Player Board Generated
 const generatePlayerBoard = (numberOfRows, numberOfColumns) => {
-	let board = [];
+	const board = [];
 		
 		for (let rowNumber = 0; rowNumber < numberOfRows; rowNumber++) {
 			let row = [];
@@ -17,7 +17,7 @@ const generatePlayerBoard = (numberOfRows, numberOfColumns) => {
 
 // Bomb Board Generated
 const generateBombBoard = (numberOfRows, numberOfColumns, numberOfBombs) => {
-	let board = [];
+	const board = [];
 		
 		for (let rowNumber = 0; rowNumber < numberOfRows; rowNumber++) {
 			let row = [];
@@ -31,7 +31,7 @@ const generateBombBoard = (numberOfRows, numberOfColumns, numberOfBombs) => {
 		while (numberOfBombsPlaced < numberOfBombs) {
 			let randomRowIndex = Math.floor(Math.random() * numberOfRows);
 			let randomColumnIndex = Math.floor(Math.random() * numberOfColumns);
-			board = [randomRowIndex][randomColumnIndex] = 'B';
+			board[randomRowIndex][randomColumnIndex] = 'B';
 			numberOfBombsPlaced++;
 			// Fix Duplicate Bombs Later
 		}
@@ -41,12 +41,17 @@ const generateBombBoard = (numberOfRows, numberOfColumns, numberOfBombs) => {
 
 
 // Print Game Board
-const printBoard = board.map(row => row.join(' | ')).join('\n'); => {
-	
-}
+const printBoard = board => {
+	console.log(board.map(row => row.join(' | ')).join('\n'));
+};
 
+// Create Boards
+let playerBoard = generatePlayerBoard(3,4);
+let bombBoard = generateBombBoard(3,4,5);
 
 
 // In Play Board
-console.log(generatePlayerBoard(2,2));
-console.log(printBoard);
+console.log('Player Board: ');
+console.log(printBoard(playerBoard));
+console.log('Bomb Board: ');
+console.log(printBoard(bombBoard));
