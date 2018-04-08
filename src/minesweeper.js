@@ -31,10 +31,11 @@ const generateBombBoard = (numberOfRows, numberOfColumns, numberOfBombs) => {
 		while (numberOfBombsPlaced < numberOfBombs) {
 			let randomRowIndex = Math.floor(Math.random() * numberOfRows);
 			let randomColumnIndex = Math.floor(Math.random() * numberOfColumns);
-			if (randomRowIndex && randomColumnIndex !== 'B') {
+			
+			if (board[randomRowIndex][randomColumnIndex] !== 'B') {
 			board[randomRowIndex][randomColumnIndex] = 'B';
-			numberOfBombsPlaced++;}
-		}
+			numberOfBombsPlaced++}
+		};
 
 		return board;
 };
@@ -51,24 +52,41 @@ neighborOffsets.forEach(offset => {
 	const neighborColumnIndex = columnIndex + offset[1];
 	if (neighborRowIndex >= 0 && neighborRowIndex < numberOfRows && neighborColumnIndex >= 0 &&
 		neighborColumnIndex < numberOfColumns) {
-	if (bombBoard == 'B') {
+	if (bombBoard[neighborRowIndex][neighborColumnIndex] === 'B') {
 		numberOfBombs++;
 	} 
-	}
+	};
 });
 	return numberOfBombs;
+};
+
+
+// Player Flip Tile
+
+const flipTile = (playerBoard, bombBoard, rowIndex, columnIndex) => {
+	if (playerBoard[rowIndex][columnIndex] !== ' ') {
+		console.log('This tile has already been flipped!');
+		return;
+	}
+	else if (bombBoard[rowIndex][columnIndex] === 'B') {
+		playerBoard[rowIndex][columnIndex] = 'B';
+	}
+	else {
+		playerBoard[rowIndex][columnIndex] = getNumberOfNeighborBombs(bombBoard, rowIndex, columnIndex);
+	}
+
 };
 
 
 
 // Print Game Board
 const printBoard = board => {
-	console.log(board.map(row => row.join(' | ')).join('\n'));
+	return board.map(row => row.join(' | ')).join('\n');
 };
 
 // Create Boards
-let playerBoard = generatePlayerBoard(3,4);
-let bombBoard = generateBombBoard(3,4,5);
+let playerBoard = generatePlayerBoard(3,3);
+let bombBoard = generateBombBoard(3,3,4);
 
 
 // In Play Board
@@ -76,3 +94,6 @@ console.log('Player Board: ');
 console.log(printBoard(playerBoard));
 console.log('Bomb Board: ');
 console.log(printBoard(bombBoard));
+flipTile(playerBoard, bombBoard, 2, 1);
+console.log('Updated Player Board: ');
+console.log(printBoard(playerBoard));
