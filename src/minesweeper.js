@@ -34,11 +34,31 @@ const generateBombBoard = (numberOfRows, numberOfColumns, numberOfBombs) => {
 			if (randomRowIndex && randomColumnIndex !== 'B') {
 			board[randomRowIndex][randomColumnIndex] = 'B';
 			numberOfBombsPlaced++;}
-			// Fix Duplicate Bombs Later
 		}
 
 		return board;
 };
+
+// Neighbour Bombs
+const getNumberOfNeighborBombs = (bombBoard, rowIndex, columnIndex) => {
+	const neighborOffsets = [[-1,-1],[0,-1],[1,-1],[-1,0],[1,0],[-1,1],[0,1],[1,1]];
+	const numberOfRows = bombBoard.length;
+	const numberOfColumns = bombBoard[0].length;
+	let numberOfBombs = 0;
+
+neighborOffsets.forEach(offset => {
+	const neighborRowIndex = rowIndex + offset[0];
+	const neighborColumnIndex = columnIndex + offset[1];
+	if (neighborRowIndex >= 0 && neighborRowIndex < numberOfRows && neighborColumnIndex >= 0 &&
+		neighborColumnIndex < numberOfColumns) {
+	if (bombBoard == 'B') {
+		numberOfBombs++;
+	} 
+	}
+});
+	return numberOfBombs;
+};
+
 
 
 // Print Game Board
